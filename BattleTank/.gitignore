@@ -74,4 +74,6 @@ Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 
+BattleTank/Content/
+
 #######This is a premade .gitignore
