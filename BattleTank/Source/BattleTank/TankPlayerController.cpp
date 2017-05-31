@@ -12,7 +12,7 @@ ATank* ATankPlayerController::GetControlledTank() const
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	UE_LOG(LogTemp, Warning, TEXT("Player Controller Begin Play"));
+	UE_LOG(LogTemp, Warning, TEXT(" Tank Player Controller Begin Play"));
 
 	ATank * Tank = GetControlledTank();
 
@@ -24,4 +24,21 @@ void ATankPlayerController::BeginPlay()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Controlled Tank is not found"));
 	}
+}
+
+
+void ATankPlayerController::Tick(float DeltaTime) 
+{
+	Super::Tick(DeltaTime);
+	AimTowardsCrossHair();
+
+}
+
+void ATankPlayerController::AimTowardsCrossHair()
+{
+	if (!GetControlledTank()) { return; }
+
+	//Get world location if linetrace through crosshair
+	// if it hits the landscape
+		//Tell controlled tank to aim that point 
 }
