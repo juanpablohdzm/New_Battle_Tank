@@ -35,11 +35,7 @@ void ATankAIController::Tick(float DeltaTime)
 ATank * ATankAIController::GetPlayerTank() const
 {
 	 auto PlayerPawn=GetWorld()->GetFirstPlayerController()->GetPawn();
-	 if (PlayerPawn)
-	 {
-		 UE_LOG(LogTemp, Warning, TEXT("Player Controller is found: %s"),*PlayerPawn->GetName());
-	 }
-	 else
+	 if (!PlayerPawn)
 	 {
 		 UE_LOG(LogTemp, Warning, TEXT("Player Controller not found"));
 		 return nullptr;

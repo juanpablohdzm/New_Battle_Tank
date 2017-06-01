@@ -16,11 +16,7 @@ void ATankPlayerController::BeginPlay()
 
 	ATank * Tank = GetControlledTank();
 
-	if (Tank)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("%s is found"), *Tank->GetFName().ToString());
-	}
-	else
+	if (!Tank)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Controlled Tank is not found"));
 	}
@@ -60,7 +56,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector & OutHitLocation) con
 	
 	if (GetLookDirection(ScreenLocation, LookDirection))
 	{
-		// Line-ytace along that look direction, and see what we hit(up to max range)
+		// Line-trace along that look direction, and see what we hit(up to max range)
 		GetLookVectorHitLocation(LookDirection,OutHitLocation);
 	}
 	
