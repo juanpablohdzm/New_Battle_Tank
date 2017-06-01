@@ -4,18 +4,33 @@
 #include "TankAIController.h"
 
 
-ATank * ATankAIController::GetAIControlledTank() const
-{
-	return Cast<ATank>(GetPawn());
-}
 
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ATank * AIPawn = GetAIControlledTank();
-	ATank * PlayerTank = GetPlayerTank();
+	AIPawn = GetAIControlledTank();
+	PlayerTank = GetPlayerTank();
+	
 }
+
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	if (GetPlayerTank())
+	{
+		
+		AIPawn->AimAt(PlayerTank->GetActorLocation());
+
+		//TODO Move towards the player
+
+		// Fire to the player
+	}
+	else
+		return;
+}
+
+
 
 ATank * ATankAIController::GetPlayerTank() const
 {
@@ -30,5 +45,10 @@ ATank * ATankAIController::GetPlayerTank() const
 		 return nullptr;
 	 }
 	 return Cast<ATank>(PlayerPawn);
+}
+
+ATank * ATankAIController::GetAIControlledTank() const
+{
+	return Cast<ATank>(GetPawn());
 }
 
