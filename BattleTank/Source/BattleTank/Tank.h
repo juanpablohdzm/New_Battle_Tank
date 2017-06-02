@@ -24,14 +24,16 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UFUNCTION(BLueprintCallable, Category = Setup)
+	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetBarrelReference(UTankBarrel * BarrelToSet);
 
-	UFUNCTION(BLueprintCallable, Category = Setup)
+	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetTurretReference(UTankTurret * TurretToSet);
 
 	void AimAt(FVector HitLocation);
 
+	UPROPERTY(EditAnywhere)
+	float  LaunchSpeed = 4000.0f;
 
 protected:
 	// Called when the game starts or when spawned
@@ -39,8 +41,7 @@ protected:
 
 	UTankAimingComponent * TankAimingComponent = nullptr;
 
-	UPROPERTY(EditAnywhere, Category = Firing)
-		float  LaunchSpeed = 100000.0f;
+	
 	
 	
 };

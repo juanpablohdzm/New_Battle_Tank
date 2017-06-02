@@ -40,7 +40,7 @@ void ATankPlayerController::AimTowardsCrossHair()
 	{
 		
 		GetControlledTank()->AimAt(HitLocation);
-			//TODO Tell controlled tank to aim that point 
+			
 	}
 }
 
