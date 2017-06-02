@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "BattleTank.h"
+#include "TankBarrel.h"
 #include "TankAimingComponent.h"
 
 
@@ -58,7 +59,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	
 }
 
-void UTankAimingComponent::SetBarrelComponent(UStaticMeshComponent * BarrelToSet)
+void UTankAimingComponent::SetBarrelComponent(UTankBarrel * BarrelToSet)
 {
 
 	Barrel = BarrelToSet;
@@ -69,5 +70,7 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	FRotator BarrelRotation = Barrel->GetForwardVector().Rotation();
 	FRotator AimAsRotator = AimDirection.Rotation();
 	FRotator DeltaRotator = AimAsRotator - BarrelRotation;
-	UE_LOG(LogTemp, Warning, TEXT("AimAsRotator:%s"), *AimAsRotator.ToString());
+	
+
+	Barrel->ElevateBarrel(5); //TODO remove magic number
 }
