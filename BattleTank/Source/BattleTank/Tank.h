@@ -32,8 +32,8 @@ public:
 
 	void AimAt(FVector HitLocation);
 
-	UPROPERTY(EditAnywhere)
-	float  LaunchSpeed = 4000.0f;
+	UFUNCTION(BlueprintCallable)
+	void fire();
 
 protected:
 	// Called when the game starts or when spawned
@@ -41,7 +41,8 @@ protected:
 
 	UTankAimingComponent * TankAimingComponent = nullptr;
 
-	
+	UPROPERTY(EditAnywhere)
+	float  LaunchSpeed = 4000.0f;
 	
 	
 };
