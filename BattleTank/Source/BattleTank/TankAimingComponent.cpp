@@ -2,6 +2,7 @@
 
 #include "BattleTank.h"
 #include "TankBarrel.h"
+#include "TankTurret.h"
 #include "TankAimingComponent.h"
 
 
@@ -36,6 +37,11 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
+	if (!Turret)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Turret not found"));
+		return;
+	}
 	if (!Barrel)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("BARREL not found"));
@@ -58,6 +64,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 	{
 		FVector AimDirection = OutLanchVelocity.GetSafeNormal();
 		MoveBarrelTowards(AimDirection);
+		RotateTurretTowards(HitLocation);
 		UE_LOG(LogTemp, Warning, TEXT("Aim Solution %f"), GetWorld()->GetTimeSeconds());
 	}
 	else
@@ -65,6 +72,11 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		UE_LOG(LogTemp, Warning, TEXT("Not Solution %f"), GetWorld()->GetTimeSeconds());
 	}
 	
+}
+
+void UTankAimingComponent::SetTurretComponent(UTankTurret * TurretToSet)
+{
+	Turret = TurretToSet;
 }
 
 void UTankAimingComponent::SetBarrelComponent(UTankBarrel * BarrelToSet)
@@ -80,5 +92,17 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	FRotator DeltaRotator = AimAsRotator - BarrelRotation;
 	
 
-	Barrel->ElevateBarrel(5); //TODO remove magic number
+	Barrel->ElevateBarrel(DeltaRotator.Pitch); 
 }
+
+void UTankAimingComponent::RotateTurretTowards(FVector RotateDirection)
+{
+	FRotator TurretRotation = Turret->GetForwardVector().Rotation();
+	FRotator RotateAsRotator = RotateDirection.Rotation();
+	FRotator DeltaRotator = RotateAsRotator - TurretRotation;
+
+	Turret->MoveTurret(DeltaRotator.Yaw);
+}
+
+
+
