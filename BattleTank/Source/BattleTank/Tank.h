@@ -9,6 +9,7 @@
 class UTankBarrel;
 class UTankAimingComponent;
 class UTankTurret;
+class AProjectile;
 
 
 UCLASS()
@@ -44,5 +45,11 @@ protected:
 	UPROPERTY(EditAnywhere)
 	float  LaunchSpeed = 4000.0f;
 	
+	UPROPERTY(EditAnywhere, Category = Setup)
+	TSubclassOf<AProjectile> ProjectileBlueprint;
+
+
+private:
+	UTankBarrel * Barrel = nullptr;
 	
 };
