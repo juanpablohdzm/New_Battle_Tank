@@ -23,7 +23,7 @@ private:
 
 	//Max Force per track , in newton = mass * acceleration
 	UPROPERTY(EditDefaultsOnly)
-	float TrackMaxDrivingForce = 400000.0f;
+	float TrackMaxDrivingForce = 40000000.0f;
 
 
 };
