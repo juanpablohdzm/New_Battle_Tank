@@ -15,9 +15,6 @@ class BATTLETANK_API UTankTrack : public UStaticMeshComponent
 	
 	
 public:
-
-
-private:
 	UFUNCTION(BluePrintCallable, Category= Input)
 	void SetThrottle(float Throttle);
 
