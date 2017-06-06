@@ -22,7 +22,8 @@ void ATankAIController::Tick(float DeltaTime)
 
 		AIPawn->AimAt(PlayerTank->GetActorLocation());
 
-		//TODO Move towards the player
+		 //Move towards the player
+		MoveToActor(PlayerTank, AcceptanceRadius);
 
 		AIPawn->fire();//TODO limit fire rate
 	}
