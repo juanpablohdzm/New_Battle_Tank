@@ -16,6 +16,7 @@ void UTankMovement::IntendTurnRight(float Throw)
 {
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(-Throw);
+	
 }
 
 void UTankMovement::Initialise(UTankTrack * LeftTrackToSet, UTankTrack * RightTrackToSet)
@@ -32,7 +33,8 @@ void UTankMovement::RequestDirectMove(const FVector& MoveVelocity, bool bForceMa
 {
 	//No need to call Super as we are replacing the functionality
 
-	FString TankName = GetOwner()->GetName();
-	FString MoveVelocityString = MoveVelocity.ToString();
-	UE_LOG(LogTemp, Warning, TEXT("%s vectoring to %s"), *TankName, *MoveVelocityString);
+	FVector TankForward= GetOwner()->GetActorForwardVector().GetSafeNormal();
+	FVector AIForwardIntention = MoveVelocity.GetSafeNormal();
+	IntendMoveForward(FVector::DotProduct(TankForward, AIForwardIntention));
+	IntendTurnRight(FVector::CrossProduct(TankForward, AIForwardIntention ).Z);
 }
