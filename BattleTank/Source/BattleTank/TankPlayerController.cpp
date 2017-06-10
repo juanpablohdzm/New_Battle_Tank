@@ -5,16 +5,11 @@
 #include "TankPlayerController.h"
 
 
-ATank* ATankPlayerController::GetControlledTank() const
-{
-	return Cast<ATank>(GetPawn());
-}
+
 
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	UE_LOG(LogTemp, Warning, TEXT(" Tank Player Controller Begin Play"));
-
 	ATank * Tank = GetControlledTank();
 
 	if (!Tank)
@@ -23,6 +18,10 @@ void ATankPlayerController::BeginPlay()
 	}
 }
 
+ATank* ATankPlayerController::GetControlledTank() const
+{
+	return Cast<ATank>(GetPawn());
+}
 
 void ATankPlayerController::Tick(float DeltaTime) 
 {
