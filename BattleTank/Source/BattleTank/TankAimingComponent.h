@@ -41,13 +41,10 @@ public:
 
 	void AimAt(FVector HitLocation, float LaunchSpeed);
 
-	void SetBarrelComponent(UTankBarrel * BarrelToSet);
-
-	void SetTurretComponent(UTankTurret * TurretToSet);
+	UFUNCTION(BlueprintCallable, Category ="setup")
+	void Initialise(UTankBarrel * BarrelToSet, UTankTurret * TurretToSet);
 
 private:
-
-	
 
 	UTankBarrel * Barrel = nullptr;
 
