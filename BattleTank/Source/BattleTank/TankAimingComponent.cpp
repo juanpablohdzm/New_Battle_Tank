@@ -37,14 +37,12 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
-	if (!Turret)
+	if (!ensure(Turret))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Turret not found"));
 		return;
 	}
-	if (!Barrel)
+	if (!ensure(Barrel))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("BARREL not found"));
 		return;
 	}
 	FVector OutLanchVelocity;

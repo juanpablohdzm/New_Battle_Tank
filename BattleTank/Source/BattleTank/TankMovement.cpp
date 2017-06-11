@@ -20,7 +20,7 @@ void UTankMovement::IntendTurnRight(float Throw)
 
 void UTankMovement::Initialise(UTankTrack * LeftTrackToSet, UTankTrack * RightTrackToSet)
 {
-	if(!LeftTrackToSet || !RightTrackToSet)
+	if(!ensure(LeftTrackToSet || !RightTrackToSet))
 	{
 		return;
 	}
