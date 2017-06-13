@@ -5,7 +5,6 @@
 #include "TankBarrel.h"
 #include "TankTurret.h"
 #include "Projectile.h"
-#include "TankMovement.h"
 #include "Tank.h"
 
 
@@ -25,6 +24,7 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("Seiko: Tank c++ Begin Play"));
+	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 }
 
 
@@ -49,9 +49,10 @@ void ATank::AimAt(FVector HitLocation )
 
 void ATank::fire()
 {
+	if (!ensure(Barrel)) { return; }
 	bool IsReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
 
-	if (Barrel && IsReloaded)
+	if (IsReloaded)
 	{
 		AProjectile * Projectile = GetWorld()->SpawnActor<AProjectile>(
 			ProjectileBlueprint,
