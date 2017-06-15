@@ -7,8 +7,6 @@
 #include "Tank.generated.h"
 
 class UTankBarrel;
-class UTankAimingComponent;
-class UTankTurret;
 class AProjectile;
 
 
@@ -24,9 +22,6 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	void AimAt(FVector HitLocation);
-
 	UFUNCTION(BlueprintCallable)
 	void fire();
 
@@ -35,8 +30,6 @@ protected:
 	virtual void BeginPlay() override;
 
 
-	UPROPERTY(BlueprintReadOnly)
-	UTankAimingComponent * TankAimingComponent = nullptr; //TODO remove
 	
 	UTankBarrel * Barrel = nullptr; //TODO remove
 	

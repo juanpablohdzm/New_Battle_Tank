@@ -6,8 +6,6 @@
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
-class ATank;
-
 UCLASS()
 class BATTLETANK_API ATankAIController : public AAIController
 {
@@ -20,7 +18,5 @@ private:
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
 
-	ATank * AIPawn=nullptr;
-	ATank * PlayerTank=nullptr;
 	
 };
