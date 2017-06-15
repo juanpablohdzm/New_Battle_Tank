@@ -39,4 +39,6 @@ private:
 	float CrossHairYLocation = 0.3333f;
 	UPROPERTY(EditDefaultsOnly)
 	float LineTraceRange = 100000.0f;
+
+	UTankAimingComponent * AimingComponent = nullptr;
 };
