@@ -18,6 +18,8 @@ public:
 
 	UTankTrack();
 
+	
+
 	UFUNCTION(BluePrintCallable, Category= Input)
 	void SetThrottle(float Throttle);
 
@@ -28,5 +30,8 @@ public:
 
 private:
 	void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	void BeginPlay() override;
 
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 };
