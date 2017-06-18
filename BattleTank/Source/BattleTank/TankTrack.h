@@ -25,9 +25,9 @@ public:
 
 	void DriveTrack();
 
-	//Max Force per track , in newton = mass * acceleration
+	//Max Force per track 
 	UPROPERTY(EditDefaultsOnly)
-	float TrackMaxDrivingForce = 40000000.f;//TODO Check if this makes tank left and right go slow with input of 1.
+	float TrackMaxDrivingForce = 40000000.f;
 
 
 private:
