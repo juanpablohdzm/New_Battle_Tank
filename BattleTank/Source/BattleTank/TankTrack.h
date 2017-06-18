@@ -23,15 +23,17 @@ public:
 	UFUNCTION(BluePrintCallable, Category= Input)
 	void SetThrottle(float Throttle);
 
+	void DriveTrack();
+
 	//Max Force per track , in newton = mass * acceleration
 	UPROPERTY(EditDefaultsOnly)
-	float TrackMaxDrivingForce = 40000000.0f;
+	float TrackMaxDrivingForce = 40000000.f;//TODO Check if this makes tank left and right go slow with input of 1.
 
 
 private:
-	void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	void ApplySidewaysForce();
 	void BeginPlay() override;
-
+	float CurrentThrottle = 0;
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 };
