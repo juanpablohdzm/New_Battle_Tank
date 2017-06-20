@@ -27,7 +27,7 @@ public:
 
 	//Max Force per track 
 	UPROPERTY(EditDefaultsOnly)
-	float TrackMaxDrivingForce = 40000000.f;
+	float TrackMaxDrivingForce = 45000000.f;
 
 
 private:
