@@ -64,16 +64,17 @@ private:
 	
 	double LastFireTime = 0;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Fireing")
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float  LaunchSpeed = 4000.0f;
 
 	UPROPERTY(EditDefaultsOnly, Category = " Setup")
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Fireing")
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	double ReloadTimeInSeconds = 3;
 
 	bool IsBarrelMoving() const;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	int32 RoundsLeft = 3;
 };
