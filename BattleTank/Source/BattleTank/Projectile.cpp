@@ -9,7 +9,8 @@ AProjectile::AProjectile()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(FName("Projectile Movement Component"));
+	
+	
 	
 	CollisionMesh = CreateDefaultSubobject<UStaticMeshComponent>(FName("Collision Mesh Component"));
 	SetRootComponent(CollisionMesh);
@@ -17,6 +18,9 @@ AProjectile::AProjectile()
 	CollisionMesh->SetVisibility(false);
 
 	LaunchBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Launch Blast Component"));
+	LaunchBlast->SetupAttachment(RootComponent);
+	
+	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(FName("Projectile Movement Component"));
 	ProjectileMovementComponent->bAutoActivate = false;
 }
 
@@ -36,7 +40,8 @@ void AProjectile::Tick(float DeltaTime)
 
 void AProjectile::LaunchProjectile(float speed)
 {
-	ProjectileMovementComponent->SetVelocityInLocalSpace(FVector::ForwardVector*speed);
+	FVector NewVelocity = FVector::ForwardVector*speed;
+	ProjectileMovementComponent->SetVelocityInLocalSpace(NewVelocity);
 	ProjectileMovementComponent->Activate();
 }
 
