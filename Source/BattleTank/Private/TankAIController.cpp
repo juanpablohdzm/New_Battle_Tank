@@ -27,7 +27,7 @@ void ATankAIController::SetPawn(APawn* InPawn)
 
 void ATankAIController::OnPossedTankDeath()
 {
-	if (!ensure(GetPawn())) { return; } // TODO remove if ok
+	if (!ensure(GetPawn())) { return; } 
 	GetPawn()->DetachFromControllerPendingDestroy();
 }
 
@@ -42,7 +42,7 @@ void ATankAIController::Tick(float DeltaTime)
 	if (!ensure(PlayerTank && ControlledTank)) { return; }
 	
 	// Move towards the player
-	MoveToActor(PlayerTank, AcceptanceRadius); // TODO check radius is in cm
+	MoveToActor(PlayerTank, AcceptanceRadius); 
 
 	// Aim towards the player
 	auto AimingComponent = ControlledTank->FindComponentByClass<UTankAimingComponent>();
@@ -50,6 +50,6 @@ void ATankAIController::Tick(float DeltaTime)
 
 	if (AimingComponent->GetFiringState() == EFiringState::Locked)
 	{
-		AimingComponent->Fire(); // TODO limit firing rate
+		AimingComponent->Fire(); 
 	}
 }
